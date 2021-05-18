@@ -9,12 +9,20 @@ public class deviceData {
     float humidity;
     Date time;
 
+    public deviceData(){}
+
     public deviceData(int id, String  deviceId, float temp, float humidity, Date time) {
         this.id=id;
         this.deviceId = deviceId;
         this.temp = temp;
         this.humidity = humidity;
         this.time = time;
+    }
+    public deviceData(String  deviceId, float temp, float humidity, long time) {
+        this.deviceId = deviceId;
+        this.temp = temp;
+        this.humidity = humidity;
+        this.time = new Date(time);
     }
 
     public String getDeviceId() {
