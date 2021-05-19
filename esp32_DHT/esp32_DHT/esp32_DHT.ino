@@ -10,9 +10,9 @@
 #define DHT_PIN 4
 #define DHT_TYPE DHT11
 
-const char* ssid="";  //wifi network's ssid
-const char* password =""; //wifi network's password
-const char* serverName = "http://***.***.*.*/devicedata/add";    //posting URL
+const char* ssid="****";  //wifi network's ssid
+const char* password ="****"; //wifi network's password
+const char* serverName = "http://**.**.*.**:8080/deviceData/add";    //posting URL
 static DHT dht(DHT_PIN,DHT_TYPE); //creating an instance dht of DHT
 
 long prevTime=millis();

@@ -13,10 +13,11 @@ import java.util.List;
 public class RESTController {
     /*DeviceDataDAO data = new DeviceDataDAO();
 
-    @RequestMapping("/deviceData")                 //http://localhost:8080/deviceData
+    @RequestMapping("/deviceData")                 //http://localhost:8080/friends
     public List<deviceData> getAllFriends() {
         return data.getAllData();
     }*/
+
     @RequestMapping("deviceData/add")
     public String addFriend(@RequestBody deviceData d){
         boolean status;
