@@ -12,10 +12,9 @@
 
 const char* ssid="";  //wifi network's ssid
 const char* password =""; //wifi network's password
-const char* serverName = "http://127.0.0.1:8080/deviceData/add";    //posting URL
+const char* serverName = "http://***.***.*.*/devicedata/add";    //posting URL
 static DHT dht(DHT_PIN,DHT_TYPE); //creating an instance dht of DHT
 
-float prevTemp=0;
 long prevTime=millis();
 time_t epochTime;
 
@@ -30,7 +29,7 @@ void loop() {
   float temperature=dht.readTemperature();      //taking temperature data
   float humidity= dht.readHumidity();           //taking humidity data
   epochTime = time(NULL);
-  if ((millis() - prevTime) > 10000)
+  if ((millis() - prevTime) > 20000)
   {
     char msg[256]; 
     StaticJsonDocument<256> jdoc;                  //declaring jsondocument variable      
@@ -42,13 +41,14 @@ void loop() {
     if(WiFi.status()== WL_CONNECTED){
       HTTPClient http;
       http.begin(serverName);
-      //http.addHeader("Content-Type", "application/json");
-      int httpResponseCode = http.POST(msg);     
+      http.addHeader("Content-Type", "application/json");
+      int httpResponseCode = http.POST(msg);  
      
       Serial.println(msg);                          //for debugging only
       Serial.println(http.getString());
       Serial.println(httpResponseCode);    
       prevTime=millis();
+      http.end();
     }
   }
 } 

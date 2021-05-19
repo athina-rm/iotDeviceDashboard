@@ -10,6 +10,5 @@ void initEpochTime() {
       break;
     }
   }
-
   Serial.printf("Epochtime initialized. Current Time: %lu", epochTime);
 }
