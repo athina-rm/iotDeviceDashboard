@@ -10,29 +10,24 @@
 <body>
 
 <div align="center">
-
-    <ul>
-        <li th:each="data : ${allData}">
-            <span th:text="${data.deviceId}">Default</span>
-        </li>
-    </ul>
-
-
     <table class="table table-sm table-dark" >
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">DeviceId</th>
-            <th scope="col">UnixTime</th>
+            <th scope="col">Date & Time</th>
             <th scope="col">Temperature</th>
             <th scope="col">Humidity</th>
         </tr>
+        <tr th:each="data : ${allData}">
+            <td th:text="${data.id}">default</td>
+            <td th:text="${data.deviceId}">default</td>
+            <td th:text="${data.datetime}">default</td>
+            <td th:text="${data.temp}">default</td>
+            <td th:text="${data.humidity}">default</td>
+        </tr>
         </thead>
-        <tbody id="tabledata">
-
-        </tbody>
     </table>
-
 </div>
 </body>
 </html>

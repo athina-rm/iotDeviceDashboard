@@ -29,6 +29,9 @@ public class deviceData {
         this.humidity = humidity;
         this.time= time;
     }
+    public int getId() {
+        return id;
+    }
 
     public String getDeviceId() {
         return deviceId;
@@ -61,11 +64,10 @@ public class deviceData {
     public void setTime(long time) {
         this.time = time;
     }
-    public LocalDateTime getDate() {
+    public LocalDateTime getDatetime() {
         return datetime;
     }
-
-    public void setDate(LocalDateTime date) {
+    public void setDateTime(LocalDateTime date) {
         this.datetime = date;
     }
 
