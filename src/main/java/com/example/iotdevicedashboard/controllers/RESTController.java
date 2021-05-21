@@ -20,7 +20,7 @@ public class RESTController {
     }
 
     @RequestMapping("deviceData/add")      //http://192.168.0.243:8080/deviceData/add
-    public String addFriend(@RequestBody deviceData d){
+    public String addFriend(@RequestBody deviceData d) {
         boolean status;
         data.addData(d);
         //System.out.println("deviceId:"+d.getDeviceId()+" Humidity:"+d.getHumidity()+" Temperature : "+d.getTemp()+" timestamp:"+d.getTimestamp()+" Time:"+(new Date(d.getTimestamp()*1000))+ d.getTime());
@@ -28,7 +28,13 @@ public class RESTController {
             return new Response("Friend added Successfully", true);
         else
             return new Response("Couldn't add friend",false);*/
-        return("added");
+        return ("added");
+    }
+
+    @RequestMapping("deviceData/forecast")
+    public String TodaysForecast() {
+
+        return data.Forecast();
     }
 
 }
