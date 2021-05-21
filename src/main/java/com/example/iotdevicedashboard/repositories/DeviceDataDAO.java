@@ -21,7 +21,7 @@ public class DeviceDataDAO {
             p.load(new FileInputStream("src/main/resources/application.properties"));
             Connection con = DriverManager.getConnection(p.getProperty("connectionString"), p.getProperty("spring.datasource.username"), p.getProperty("spring.datasource.password"));
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM dbo.dhtmeasurements");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM dbo.dhtmeasurements ORDER BY epochTime desc");
             while (rs.next()) {
                 deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getLong("epochTime"));
                 data.add(d);
