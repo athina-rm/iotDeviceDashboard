@@ -33,7 +33,6 @@ public class RESTController {
             return new Response("Friend added Successfully", true);
         else
             return new Response("Couldn't add friend",false);*/
-        return ("added");
     }
 
     @RequestMapping("deviceData/forecast")      //http://192.168.0.243:8080/deviceData/forecast
