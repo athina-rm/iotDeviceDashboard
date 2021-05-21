@@ -1,7 +1,8 @@
 package com.example.iotdevicedashboard.Models;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class deviceData {
     int id;
@@ -9,19 +10,17 @@ public class deviceData {
     float temp;
     float humidity;
     long time;
-    Timestamp timestamp;
     LocalDateTime datetime;
 
     public deviceData(){}
 
-    public deviceData(int id, String  deviceId, float temp, float humidity, Timestamp timestamp) {
+    public deviceData(int id, String  deviceId, float temp, float humidity, long timestamp) {
         this.id=id;
         this.deviceId = deviceId;
         this.temp = temp;
         this.humidity = humidity;
-        this.timestamp=timestamp;
-        this.datetime=this.timestamp.toLocalDateTime();
-        this.time=this.timestamp.getTime()/1000;
+        this.time=timestamp;
+        this.datetime=LocalDateTime.ofInstant(Instant.ofEpochMilli(this.time*1000), ZoneId.systemDefault());
     }
 
     public deviceData(String  deviceId, float temp, float humidity, long time) {

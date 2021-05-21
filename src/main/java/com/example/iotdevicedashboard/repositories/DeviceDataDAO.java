@@ -21,7 +21,7 @@ public class DeviceDataDAO {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM dbo.dhtmeasurements");
             while (rs.next()) {
-                deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getTimestamp("epochTime"));
+                deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getLong("epochTime"));
                 data.add(d);
             }
         } catch (SQLException | IOException throwables) {
