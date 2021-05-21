@@ -19,9 +19,9 @@ public class DeviceDataDAO {
             p.load(new FileInputStream("src/main/java/com/example/iotdevicedashboard/system.properties"));
             Connection con = DriverManager.getConnection(p.getProperty("connectionString"), p.getProperty("username"), p.getProperty("password"));
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM dhtmeasurements");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM dbo.dhtmeasurements");
             while (rs.next()) {
-                deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getTimestamp("timestamp"));
+                deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getTimestamp("epochTime"));
                 data.add(d);
             }
         } catch (SQLException | IOException throwables) {
@@ -36,11 +36,11 @@ public class DeviceDataDAO {
             Properties p = new Properties();
             p.load(new FileInputStream("src/main/java/com/example/iotdevicedashboard/system.properties"));
             Connection con = DriverManager.getConnection(p.getProperty("connectionString"), p.getProperty("username"), p.getProperty("password"));
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO dhtmeasurements (deviceId,temp,humidity,timestamp,date) VALUES (?,?,?,?,?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO dbo.dhtmeasurements (deviceId,temp,humidity,epochTime,date) VALUES (?,?,?,?,?)");
             stmt.setString(1, d.getDeviceId());
             stmt.setFloat(2, d.getTemp());
             stmt.setFloat(3, d.getHumidity());
-            stmt.setTimestamp(4,(new Timestamp(d.getTime()*1000)));
+            stmt.setLong(4,(d.getTime()));
             stmt.setDate(5,new Date(d.getTime()*1000));
 
             result = stmt.executeUpdate();
