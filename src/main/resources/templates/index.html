@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <script src="https://kit.fontawesome.com/043e51ac62.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>IoTwebApp</title>
+</head>
+<body>
+
+<div align="center">
+    <table class="table table-sm table-dark" >
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">DeviceId</th>
+            <th scope="col">Date & Time</th>
+            <th scope="col">Temperature</th>
+            <th scope="col">Humidity</th>
+        </tr>
+        <tr th:each="data : ${allData}">
+            <td th:text="${data.id}">default</td>
+            <td th:text="${data.deviceId}">default</td>
+            <td th:text="${data.datetime}">default</td>
+            <td th:text="${data.temp}">default</td>
+            <td th:text="${data.humidity}">default</td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
