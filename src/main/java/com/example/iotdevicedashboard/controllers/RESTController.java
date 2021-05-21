@@ -7,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.util.List;
-
 @Controller
 public class RESTController {
     DeviceDataDAO data = new DeviceDataDAO();
@@ -23,11 +20,8 @@ public class RESTController {
     @RequestMapping("deviceData/add")      //http://192.168.0.243:8080/deviceData/add
     public Response addFriend(@RequestBody deviceData d) {
        // boolean status;
-
         Response res = new Response("New dht measurements Added", data.addData(d));
-        System.out.println(res.getResponse() +  res.getStatus());
         return res;
-
         //System.out.println("deviceId:"+d.getDeviceId()+" Humidity:"+d.getHumidity()+" Temperature : "+d.getTemp()+" timestamp:"+d.getTimestamp()+" Time:"+(new Date(d.getTimestamp()*1000))+ d.getTime());
         /*if (status = data.addFriend(f))
             return new Response("Friend added Successfully", true);
@@ -39,5 +33,4 @@ public class RESTController {
     public String TodaysForecast() {
         return data.Forecast();
     }
-
 }
