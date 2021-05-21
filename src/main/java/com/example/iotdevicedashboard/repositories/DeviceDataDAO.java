@@ -46,10 +46,13 @@ public class DeviceDataDAO {
             stmt.setDate(5, new Date(d.getTime() * 1000));
 
             result = stmt.executeUpdate();
+            if (result == 1) {
+                return true;
+            }
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
-        return result > 0;
+        return  false;
     }
 
     public String Forecast() {
