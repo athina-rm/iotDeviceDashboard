@@ -1,6 +1,6 @@
 let sensorData = document.getElementById('{replace by table id from html}')
 
-fetch("{replace by azure database url}")
+fetch("----")
     .then(res => res.json())
     .then(data => {
         for(let row of data) {

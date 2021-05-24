@@ -21,7 +21,7 @@ public class DeviceDataDAO {
             p.load(new FileInputStream("src/main/resources/application.properties"));
             Connection con = DriverManager.getConnection(p.getProperty("connectionString"), p.getProperty("spring.datasource.username"), p.getProperty("spring.datasource.password"));
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM dbo.dhtmeasurements ORDER BY epochTime desc");
+            ResultSet rs = stmt.executeQuery("SELECT top 15 id,deviceId,temp,humidity,epochTime FROM dbo.dhtmeasurements ORDER BY epochTime desc");
             while (rs.next()) {
                 deviceData d = new deviceData(rs.getInt("id"), rs.getString("deviceId"), rs.getFloat("temp"), rs.getFloat("humidity"), rs.getLong("epochTime"));
                 data.add(d);
@@ -54,7 +54,7 @@ public class DeviceDataDAO {
         }
         return  false;
     }
-
+/*
     public String Forecast() {
 
         String forecast = "";
@@ -81,6 +81,33 @@ public class DeviceDataDAO {
             e.printStackTrace();
         }
         return forecast;
+    }*/
+    public deviceData Forecast() {
+        deviceData d = new deviceData();
+        String forecast = "";
+        String quary = "select max(temp) as Todays_Highest , min(temp) as Todays_Lowest,  ROUND(avg(temp),2) as Todays_avg from dbo.dhtmeasurements  where date =  CONVERT(date, SYSDATETIME())";
+        try {
+            Properties p = new Properties();
+            p.load(new FileInputStream("src/main/resources/application.properties"));
+            Connection con = DriverManager.getConnection(p.getProperty("connectionString"),p.getProperty("username"),p.getProperty("password"));
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(quary);
+
+            while (rs.next()) {
+
+                float h =rs.getFloat("Todays_Highest");
+                float l =rs.getFloat("Todays_Lowest");
+                float a= rs.getFloat("Todays_avg");
+
+                d = new deviceData(h,l,a);
+
+            }
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return d;
     }
 
 }

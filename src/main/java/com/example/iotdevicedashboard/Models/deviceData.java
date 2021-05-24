@@ -11,6 +11,9 @@ public class deviceData {
     float humidity;
     long time;
     LocalDateTime datetime;
+    float Highest;
+    float Lowest;
+    float Average;
 
     public deviceData(){}
 
@@ -29,6 +32,36 @@ public class deviceData {
         this.humidity = humidity;
         this.time= time;
     }
+    public deviceData(float highest,float lowest,float average){
+        this.Highest = highest;
+        this.Lowest = lowest;
+        this.Average = average;
+    }
+
+    public float getHighest() {
+        return Highest;
+    }
+
+    public void setHighest(float highest) {
+        Highest = highest;
+    }
+
+    public float getLowest() {
+        return Lowest;
+    }
+
+    public void setLowest(float lowest) {
+        Lowest = lowest;
+    }
+
+    public float getAverage() {
+        return Average;
+    }
+
+    public void setAverage(float average) {
+        Average = average;
+    }
+
     public int getId() {
         return id;
     }

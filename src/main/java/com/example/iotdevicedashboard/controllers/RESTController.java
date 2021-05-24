@@ -14,6 +14,7 @@ public class RESTController {
     @RequestMapping("/deviceData")                 //http://localhost:8080/deviceData
     public String  getAllData(deviceData d,Model model) {
         model.addAttribute("allData",data.getAllData());
+        model.addAttribute("forecast",data.Forecast());
         return "index";
     }
 
@@ -22,15 +23,11 @@ public class RESTController {
        // boolean status;
         Response res = new Response("New dht measurements Added", data.addData(d));
         return res;
-        //System.out.println("deviceId:"+d.getDeviceId()+" Humidity:"+d.getHumidity()+" Temperature : "+d.getTemp()+" timestamp:"+d.getTimestamp()+" Time:"+(new Date(d.getTimestamp()*1000))+ d.getTime());
-        /*if (status = data.addFriend(f))
-            return new Response("Friend added Successfully", true);
-        else
-            return new Response("Couldn't add friend",false);*/
+
     }
 
     @RequestMapping("deviceData/forecast")      //http://192.168.0.243:8080/deviceData/forecast
-    public String TodaysForecast() {
+    public deviceData TodaysForecast() {
         return data.Forecast();
     }
 }

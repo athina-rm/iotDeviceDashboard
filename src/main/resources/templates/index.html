@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="ISO-8859-1">
     <script src="https://kit.fontawesome.com/043e51ac62.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>IoTwebApp</title>
+
 </head>
 <body>
 
@@ -18,6 +19,9 @@
             <th scope="col">Date & Time</th>
             <th scope="col">Temperature</th>
             <th scope="col">Humidity</th>
+            <!--th scope="col">high</th-->
+            <!--th scope="col">low</th-->
+            <!--th scope="col">avg</th-->
         </tr>
         <tr th:each="data : ${allData}">
             <td th:text="${data.id}">default</td>
@@ -25,6 +29,22 @@
             <td th:text="${data.datetime}">default</td>
             <td th:text="${data.temp}">default</td>
             <td th:text="${data.humidity}">default</td>
+        </tr>
+        </thead>
+    </table>
+<!--/div-->
+
+<!--div align="center"-->
+    <table class="table table-sm table-dark" >
+        <thead>
+        <tr><th scope="col">high</th>
+            <th scope="col">low</th>
+            <th scope="col">avg</th>
+        </tr>
+        <tr th:each="data : ${forecast}">
+            <td th:text="${data.Highest}">default</td>
+            <td th:text="${data.Lowest}">default</td>
+            <td th:text="${data.average}">default</td>
         </tr>
         </thead>
     </table>
